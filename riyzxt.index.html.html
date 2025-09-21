@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiyzXT - Software Developer</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #0d0d0d;
+            color: #f0f0f0;
+            scroll-behavior: smooth;
+        }
+        
+        /* Color Variables */
+        :root {
+            --primary-black: #0d0d0d;
+            --secondary-black: #1a1a1a;
+            --primary-silver: #c0c0c0;
+            --secondary-silver: #d9d9d9;
+            --accent-silver: #e6e6e6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-silver);
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--accent-silver);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        /* Navigation */
+        header {
+            background-color: var(--secondary-black);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-silver);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom right, var(--primary-black) 0%, #2a2a2a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(192, 192, 192, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary-silver), var(--accent-silver));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary-silver);
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, #4a4a4a, #2a2a2a);
+            color: var(--primary-silver);
+            padding: 12px 30px;
+            border: 1px solid var(--primary-silver);
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, #5a5a5a, #3a3a3a);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(192, 192, 192, 0.1);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--secondary-black);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary-silver);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary-silver);
+            margin: 15px auto 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-img {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-silver);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--secondary-silver);
+        }
+        
+        /* Skills Section */
+        .skills-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background-color: var(--secondary-black);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-silver);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: var(--secondary-silver);
+        }
+        
+        .skill-list li::before {
+            content: '▹';
+            color: var(--primary-silver);
+            margin-right: 10px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary-black);
+        }
+        
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-content p {
+            margin-bottom: 30px;
+            color: var(--secondary-silver);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--primary-silver);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-silver);
+            color: var(--primary-black);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-black);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(192, 192, 192, 0.1);
+        }
+        
+        footer p {
+            color: var(--secondary-silver);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .profile-img {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">RiyzXT</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content fade-in">
+            <h1>RiyzXT</h1>
+            <p>Software Developer & Programming Enthusiast</p>
+            <a href="#skills" class="btn">View My Skills</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm RiyzXT, a passionate software developer with expertise in multiple programming languages and technologies. I enjoy creating efficient, scalable solutions to complex problems.</p>
+                    <p>With a strong foundation in computer science principles and hands-on experience in various development environments, I'm constantly learning and adapting to new technologies to stay at the forefront of the industry.</p>
+                    <p>My approach combines technical expertise with creative problem-solving to deliver high-quality software that meets user needs and exceeds expectations.</p>
+                </div>
+                <div class="about-img">
+                    <img src="https://i.postimg.cc/MTDhY3dP/gojo.webp://placeholder-image-/image/300x300?prompt=Professional%20developer%20portrait%20with%20black%20and%20silver%20background&id=portrait-riyzxt" alt="Professional portrait of RiyzXT" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-content">
+                <div class="skill-category fade-in">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>JavaScript/TypeScript</li>
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>C++</li>
+                        <li>PHP</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Frontend Development</h3>
+                    <ul class="skill-list">
+                        <li>HTML5 & CSS3</li>
+                        <li>React.js</li>
+                        <li>Vue.js</li>
+                        <li>Angular</li>
+                        <li>Bootstrap</li>
+                        <li>Tailwind CSS</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Backend Development</h3>
+                    <ul class="skill-list">
+                        <li>Node.js</li>
+                        <li>Express.js</li>
+                        <li>Django</li>
+                        <li>Spring Boot</li>
+                        <li>RESTful APIs</li>
+                        <li>GraphQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category fade-in">
+                    <h3>Database & Tools</h3>
+                    <ul class="skill-list">
+                        <li>MySQL</li>
+                        <li>MongoDB</li>
+                        <li>PostgreSQL</li>
+                        <li>Git & GitHub</li>
+                        <li>Docker</li>
+                        <li>AWS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm always interested in new opportunities, collaborations, or just a friendly chat about technology and programming.</p>
+                <a href="mailto:contact@riyzxt.com" class="btn">Send Message</a>
+                
+                <div class="social-links">
+                    <a href="#" class="social-icon">Git</a>
+                    <a href="#" class="social-icon">In</a>
+                    <a href="#" class="social-icon">Tw</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 RiyzXT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transition = 'opacity 0.5s ease-in-out';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
